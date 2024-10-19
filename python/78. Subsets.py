@@ -1,21 +1,18 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        
-       
-        length = len(nums)
+        res = []
 
-        res = [[]]
 
-        for i in range(length):
+        def backtrack(loc,path):
+            res.append(path)
 
-            for j in range(len(res)):
-                tmp = res[j]
-
-                sub = tmp.copy()
-                sub.append(nums[i])
-
-                res.append(sub)
+            for i in range(loc,len(nums)):
+                backtrack(i+1,path+[nums[i]])
             
+        
+        backtrack(0,[])
+        
+ 
         return res
 
         
