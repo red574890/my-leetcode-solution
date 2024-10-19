@@ -1,17 +1,26 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         res = []
+        nums.sort()
         def DFS(path,remain):
 
             if(len(remain) == 0):
-                if(path not in res):
-                    res.append(path)
+      
+                res.append(path)
                 return 
             else:
+                used = set()
                 for i in range(len(remain)):
+                    
                     tmp = remain.copy()
-                    path_tmp = path.copy()
                     current = tmp.pop(i)
+                    if(current in used):
+                        continue
+
+                    
+                    path_tmp = path.copy()
+                    
+                    used.add(current)
                     path_tmp.append(current)
                     DFS(path_tmp,tmp)
             
