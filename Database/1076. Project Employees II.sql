@@ -1,0 +1,14 @@
+
+WITH CTE AS (
+
+SELECT project_id, COUNT(employee_id) NUMBER_OF_E FROM 
+
+PROJECT 
+
+GROUP BY project_id
+) 
+
+
+SELECT project_id FROM CTE 
+
+WHERE NUMBER_OF_E = (SELECT MAX(NUMBER_OF_E) FROM CTE)
